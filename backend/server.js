@@ -20,7 +20,7 @@ const port = 3000
 app.use(bodyParser.json());
 app.use(cors())
 
-app.get('/', async (req, res) => {
+app.get('/passwords/count', async (req, res) => {
     await client.connect();
   console.log('Connected successfully to server');
   const db = client.db(dbName);
@@ -29,7 +29,7 @@ app.get('/', async (req, res) => {
   res.send(findResult)
 })
 
-app.post('/', async (req,res)=> {
+app.post('/passwords', async (req,res)=> {
     const password =  req.body
     await client.connect()
     const db = client.db(dbName)
@@ -41,7 +41,7 @@ app.post('/', async (req,res)=> {
     })
 })
 
-app.delete('/', async (req,res)=> {
+app.delete('/passwords', async (req,res)=> {
     const password =  req.body
     console.log(password)
     await client.connect()
