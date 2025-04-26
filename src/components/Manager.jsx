@@ -80,7 +80,7 @@ const Manager = () => {
 
   const editPassword = (id) => {
     setform(passwordArray.filter((item) => item.id === id)[0]);
-     fetch("http://localhost:3000/passwords", {
+     fetch(`http://localhost:3000/passwords/${id}`, {
       method: "DELETE",
       body: JSON.stringify({id}),
       headers: {
@@ -103,7 +103,7 @@ const Manager = () => {
   const deletePassword = (id) => {
     let c = confirm("Do you really want to delete this item ? ");
     if (c) {
-       fetch("http://localhost:3000/passwords", { 
+       fetch(`http://localhost:3000/passwords/${id}`, { 
         method: "DELETE",
         body: JSON.stringify({id}),
         headers: {

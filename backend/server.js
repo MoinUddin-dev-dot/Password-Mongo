@@ -41,13 +41,13 @@ app.post('/passwords', async (req,res)=> {
     })
 })
 
-app.delete('/passwords', async (req,res)=> {
-    const password =  req.body
+app.delete('/passwords/:id', async (req,res)=> {
+    const password =  req.params.id;
     console.log(password)
     await client.connect()
     const db = client.db(dbName)
     const collection = db.collection('passwords')
-    const findResult = await collection.deleteOne(password)
+    const findResult = await collection.deleteOne({id: password})
     res.send({
         succes: true,
         "delete": true
